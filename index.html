@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>谭乐 · 个人主页</title>
+<meta name="description" content="谭乐的个人主页">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌦️</text></svg>">
+<style>
+  :root {
+    --bg: #fafaf7;
+    --ink: #2b2b2b;
+    --sub: #6b6b6b;
+    --accent: #b0852a;
+    --card: #ffffff;
+    --line: #e8e4dc;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #16181d;
+      --ink: #e8e8e8;
+      --sub: #9a9a9a;
+      --accent: #d4a94e;
+      --card: #1f232b;
+      --line: #2c313b;
+    }
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+  header {
+    padding: 96px 0 72px;
+    text-align: center;
+    background: linear-gradient(180deg, transparent 60%, var(--bg) 100%),
+                radial-gradient(1200px 500px at 50% -10%, rgba(176,133,42,.10), transparent 70%);
+  }
+  .avatar {
+    width: 88px; height: 88px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center; justify-content: center;
+    font-size: 44px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    box-shadow: 0 4px 24px rgba(0,0,0,.06);
+    margin-bottom: 24px;
+  }
+  h1 { font-size: 28px; font-weight: 700; letter-spacing: .5px; }
+  header p { color: var(--sub); margin-top: 8px; font-size: 16px; }
+
+  main { padding-bottom: 32px; }
+  section { margin-bottom: 48px; }
+  h2 {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  h2::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 20px 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.03);
+  }
+  .card p { color: var(--sub); }
+  .card .placeholder { font-size: 13px; color: var(--sub); opacity: .8; margin-top: 8px; }
+
+  ul.links { list-style: none; display: grid; gap: 10px; }
+  ul.links li a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 14px 18px;
+    color: var(--ink);
+    text-decoration: none;
+    transition: border-color .15s, transform .15s;
+  }
+  ul.links li a:hover { border-color: var(--accent); transform: translateY(-1px); }
+  ul.links .url { color: var(--sub); font-size: 13px; font-family: ui-monospace, monospace; }
+
+  footer {
+    text-align: center;
+    color: var(--sub);
+    font-size: 13px;
+    padding: 40px 0 56px;
+    border-top: 1px solid var(--line);
+  }
+  footer a { color: var(--sub); text-decoration: none; border-bottom: 1px dotted var(--sub); }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="avatar">🌦️</div>
+    <h1>谭乐</h1>
+    <p>个人主页 · 建设中</p>
+  </div>
+</header>
+<main class="wrap">
+  <section id="about">
+    <h2>关于我</h2>
+    <div class="card">
+      <p>网站刚刚上线，内容准备中。</p>
+      <p class="placeholder">这里将放上一段自我介绍：你是谁、在做什么、关心什么。</p>
+    </div>
+  </section>
+  <section id="links">
+    <h2>链接</h2>
+    <ul class="links">
+      <li>
+        <a href="https://github.com/tlreal" target="_blank" rel="noopener">
+          <span>GitHub</span><span class="url">github.com/tlreal</span>
+        </a>
+      </li>
+    </ul>
+  </section>
+</main>
+<footer>
+  <div class="wrap">
+    © 2026 谭乐 · 由 <a href="https://github.com/tlreal/tlreal.github.io" target="_blank" rel="noopener">tlreal.github.io</a> 驱动
+  </div>
+</footer>
+</body>
+</html>
