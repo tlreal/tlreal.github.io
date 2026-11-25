@@ -3,140 +3,204 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>谭乐 · 个人主页</title>
-<meta name="description" content="谭乐的个人主页">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌦️</text></svg>">
-<style>
-  :root {
-    --bg: #fafaf7;
-    --ink: #2b2b2b;
-    --sub: #6b6b6b;
-    --accent: #b0852a;
-    --card: #ffffff;
-    --line: #e8e4dc;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #16181d;
-      --ink: #e8e8e8;
-      --sub: #9a9a9a;
-      --accent: #d4a94e;
-      --card: #1f232b;
-      --line: #2c313b;
-    }
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
-    background: var(--bg);
-    color: var(--ink);
-    line-height: 1.75;
-    -webkit-font-smoothing: antialiased;
-  }
-  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
-
-  header {
-    padding: 96px 0 72px;
-    text-align: center;
-    background: linear-gradient(180deg, transparent 60%, var(--bg) 100%),
-                radial-gradient(1200px 500px at 50% -10%, rgba(176,133,42,.10), transparent 70%);
-  }
-  .avatar {
-    width: 88px; height: 88px;
-    border-radius: 50%;
-    display: inline-flex;
-    align-items: center; justify-content: center;
-    font-size: 44px;
-    background: var(--card);
-    border: 1px solid var(--line);
-    box-shadow: 0 4px 24px rgba(0,0,0,.06);
-    margin-bottom: 24px;
-  }
-  h1 { font-size: 28px; font-weight: 700; letter-spacing: .5px; }
-  header p { color: var(--sub); margin-top: 8px; font-size: 16px; }
-
-  main { padding-bottom: 32px; }
-  section { margin-bottom: 48px; }
-  h2 {
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--accent);
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  h2::after { content: ""; flex: 1; height: 1px; background: var(--line); }
-
-  .card {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 20px 24px;
-    box-shadow: 0 1px 3px rgba(0,0,0,.03);
-  }
-  .card p { color: var(--sub); }
-  .card .placeholder { font-size: 13px; color: var(--sub); opacity: .8; margin-top: 8px; }
-
-  ul.links { list-style: none; display: grid; gap: 10px; }
-  ul.links li a {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 14px 18px;
-    color: var(--ink);
-    text-decoration: none;
-    transition: border-color .15s, transform .15s;
-  }
-  ul.links li a:hover { border-color: var(--accent); transform: translateY(-1px); }
-  ul.links .url { color: var(--sub); font-size: 13px; font-family: ui-monospace, monospace; }
-
-  footer {
-    text-align: center;
-    color: var(--sub);
-    font-size: 13px;
-    padding: 40px 0 56px;
-    border-top: 1px solid var(--line);
-  }
-  footer a { color: var(--sub); text-decoration: none; border-bottom: 1px dotted var(--sub); }
-</style>
+<title>谭乐 · AI 应用工程师</title>
+<meta name="description" content="谭乐 — AI 应用工程师。大模型应用 / RAG 智能问答 / Agent 工程化 / 计算机视觉 / 大数据。主导企业级 RAG 问答系统 1.0→2.2+ 迭代并通过深度合成服务算法备案。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%236ea8ff'/%3E%3Cstop offset='1' stop-color='%23a78bfa'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='22' fill='%230b0e14'/%3E%3Ctext x='50' y='68' font-size='52' font-weight='700' text-anchor='middle' fill='url(%23g)' font-family='sans-serif'%3E乐%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<header>
-  <div class="wrap">
-    <div class="avatar">🌦️</div>
-    <h1>谭乐</h1>
-    <p>个人主页 · 建设中</p>
-  </div>
-</header>
-<main class="wrap">
-  <section id="about">
-    <h2>关于我</h2>
-    <div class="card">
-      <p>网站刚刚上线，内容准备中。</p>
-      <p class="placeholder">这里将放上一段自我介绍：你是谁、在做什么、关心什么。</p>
+<div class="noise"></div>
+<canvas id="stars"></canvas>
+<div class="glow g1"></div><div class="glow g2"></div><div class="glow g3"></div>
+
+<nav id="nav">
+  <div class="nav-in">
+    <a class="brand" href="#top"><span class="dot"></span>谭乐<span style="color:var(--dim);font-weight:400;font-size:13px">/ Tan Le</span></a>
+    <div class="nav-links">
+      <a href="#about">关于</a><a href="#work">经历</a><a href="#projects">项目</a><a href="#contact">联系</a>
     </div>
-  </section>
-  <section id="links">
-    <h2>链接</h2>
-    <ul class="links">
-      <li>
-        <a href="https://github.com/tlreal" target="_blank" rel="noopener">
-          <span>GitHub</span><span class="url">github.com/tlreal</span>
-        </a>
-      </li>
-    </ul>
-  </section>
-</main>
+  </div>
+</nav>
+
+<header id="top">
+  <div class="wrap">
+    <div class="hero-eyebrow reveal"><span class="pulse"></span>AI 应用工程师 · 广州</div>
+    <h1 class="hero-name reveal d1">谭乐<span class="grad">.</span></h1>
+    <div class="hero-role reveal d2">把大模型能力做成<b>真正能用的系统</b> —— <span class="typed" id="typed"></span><span style="color:var(--acc)">▌</span></div>
+    <p class="hero-sub reveal d3">企业级 RAG 智能问答系统从 1.0 迭代到 2.2+，通过深度合成服务算法备案；从文档解析、OCR、检索到部署上线的完整链路，我都有实操。</p>
+    <div class="hero-cta reveal d4">
+      <a class="btn primary" href="#projects">看看我做的东西 ↓</a>
+      <a class="btn ghost" href="#contact">联系我</a>
+    </div>
+  </div>
+  <div class="hero-foot">SCROLL</div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-tag reveal">ABOUT</div>
+    <h2 class="sec-title reveal d1">我是谁</h2>
+    <div class="stats">
+      <div class="stat reveal"><div class="num" data-count="8">0</div><div class="lab">个月企业 AI 岗实习<br>2025.10 — 2026.5</div></div>
+      <div class="stat reveal d1"><div class="num"><span data-count="1">0</span>.0 → <span data-count="2">0</span>.2+</div><div class="lab">RAG 问答系统迭代版本<br>已通过算法备案</div></div>
+      <div class="stat reveal d2"><div class="num"><span data-count="92.3" data-dec="1">0</span>%</div><div class="lab">YOLOv8 检测精度 mAP<br>消费级硬件 25+ FPS</div></div>
+      <div class="stat reveal d3"><div class="num"><span data-count="5">0</span></div><div class="lab">个从 0 到 1 的独立项目<br>CV / 大数据 / 推荐 / 语音</div></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-card reveal">
+        <h3>我在做什么</h3>
+        <p>智能科学与技术专业（广州商学院，2024.09 – 2026.06），在广州技象科技做大模型应用开发。核心战场是企业级智能问答系统 TPAIP：多格式文档解析、双引擎解析架构、OCR 识别与多模态输入，一路把它从 1.0 推到 2.2+ 并完成深度合成服务算法备案。</p>
+        <p>我不只写提示词。并发架构重构、向量服务限流治理、SQLite 锁冲突、Docker 部署、Linux 服务器排障——系统真正跑起来之前的每一层，我都碰过。</p>
+        <p>业余我把「指挥 AI 做事」本身练成了手艺：用 AI 协作方式构建了多智能体工作流、技能资产平台雏形，以及一个完全由代码绘制画面的 DnD 文字冒险游戏。</p>
+      </div>
+      <div class="about-card reveal d1">
+        <h3>技能栈</h3>
+        <div class="chips">
+          <span class="chip">Python</span><span class="chip">Prompt Engineering</span><span class="chip">RAG</span><span class="chip">LangChain</span><span class="chip">LangGraph</span><span class="chip">Dify</span><span class="chip">FastAPI</span><span class="chip">Flask</span><span class="chip">OCR · PaddleOCR</span><span class="chip">YOLOv8</span><span class="chip">OpenCV</span><span class="chip">Pandas / NumPy</span><span class="chip">Hadoop · Hive · Spark</span><span class="chip">DataX</span><span class="chip">Docker</span><span class="chip">Linux</span><span class="chip">MySQL / SQLite</span><span class="chip">WebSocket</span><span class="chip">PyQt5</span>
+        </div>
+        <h3 style="margin-top:26px">证书</h3>
+        <p style="margin-bottom:0">智能系统开发工程师（Java）中级</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="sec-tag reveal">EXPERIENCE</div>
+    <h2 class="sec-title reveal d1">工作经历</h2>
+    <div class="timeline">
+      <div class="t-item reveal">
+        <div class="t-head"><h3>广州技象科技有限公司</h3><span class="when">2025.10 — 2026.5</span></div>
+        <div class="t-role">大模型应用开发岗 · AI 应用工程师</div>
+        <details class="t-block" open>
+          <summary>企业级智能问答系统 TPAIP（RAG）<span class="arr">▸</span></summary>
+          <div class="t-body"><ul>
+            <li><b>1.0 → 2.2+ 全程迭代</b>：参与企业级 RAG 智能问答系统开发，系统已通过<b>深度合成服务算法备案</b></li>
+            <li>构建 PDF / Word / Excel 多格式文档处理能力，设计<b>「双引擎解析架构」</b>，支持批量处理与知识库构建</li>
+            <li>集成 OCR 识别与多模态输入，提升非结构化数据问答效果；实现文档原件预览与下载</li>
+            <li>基于 Docker 完成 Linux 服务器部署，解决 CORS、认证机制、数据库迁移等问题</li>
+          </ul></div>
+        </details>
+        <details class="t-block">
+          <summary>架构优化与性能提升<span class="arr">▸</span></summary>
+          <div class="t-body"><ul>
+            <li>重构并发处理架构：<b>多进程 Worker + 线程池</b>，显著提升高并发处理能力</li>
+            <li>解决向量服务限流（403）：设计<b>请求限速与重试机制</b>，提升系统稳定性</li>
+            <li>重构任务队列与数据库事务机制，解决 <b>SQLite 锁冲突</b>；构建文档处理队列与异步机制，平衡一致性与吞吐</li>
+          </ul></div>
+        </details>
+        <details class="t-block">
+          <summary>OCR 架构设计<span class="arr">▸</span></summary>
+          <div class="t-body"><ul>
+            <li>设计并落地<b>「远程 OCR 服务架构」</b>：FastAPI 部署 OCR 服务，本地 / 远程自动切换与容错</li>
+            <li>完成本机 OCR / 远程 OCR / DeepSeek-OCR 多方案对比，输出测试报告并确定最优路线</li>
+            <li>明确 PaddleOCR 与 DeepSeek-OCR 分工，实现能力分层组合；高并发与复杂 PDF 场景下达到<b>可生产级</b>成功率与响应性能</li>
+          </ul></div>
+        </details>
+        <details class="t-block">
+          <summary>AI 能力工程化<span class="arr">▸</span></summary>
+          <div class="t-body"><ul>
+            <li>调研对比 <b>LangChain / LangGraph / Dify</b>，输出技术选型与演进分析文档</li>
+            <li>拆解 Agent 执行机制，形成技术文档并完成团队分享；将 AI 能力工程化为可复用模块</li>
+          </ul></div>
+        </details>
+        <details class="t-block">
+          <summary>AI 工具化平台 TPClawHub 与其他实践<span class="arr">▸</span></summary>
+          <div class="t-body"><ul>
+            <li>参与设计开发 <b>TPClawHub（Skills 管理平台）</b>，实现 AI 能力资产化与复用</li>
+            <li>开发 <b>File2Skills</b>：多格式文档 → skills.zip 自动转换（LLM 语义拆分 + OCR）；重构 Skill 创建流程为结构化表单 + Validator</li>
+            <li>打通 Skills 全链路「创建→审核→优化→发布→使用」，实现 CLI 多源加载与 GitLab 自动备份</li>
+            <li>搭建低空无人机展示平台（<b>MQTT → InfluxDB → 前端可视化</b>完整数据链路）；支持算法备案材料整理与 AI 系统合规建设</li>
+          </ul></div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-tag reveal">PROJECTS</div>
+    <h2 class="sec-title reveal d1">我的项目</h2>
+    <p class="sec-desc reveal d2">代表作是一个完全由代码绘制画面、零图片素材的 DnD 跑团文字冒险游戏；其余五个项目覆盖计算机视觉、大数据、推荐系统与语音，全部带可验证的量化结果。</p>
+
+    <div class="proj-hero reveal">
+      <div class="ph-in">
+        <div>
+          <span class="ph-badge">★ 代表作 · 原创游戏</span>
+          <h3>骰运迷城</h3>
+          <div class="ph-en">DICE-MAZE · DnD ROGUELITE</div>
+          <p class="desc">一场 15~25 分钟的小黑盒小程序跑团肉鸽：掷骰建卡 → 三幕随机地城 → 四结局。55 个原创场景、透明骰学检定（DC + 成功率 + 优势）、CSS 3D 掷骰仪式、Canvas 余烬粒子与程序化音效——<b style="color:#f0dfae">全部画面由代码实时绘制，不含一张图片素材</b>。800 局无头模拟验证：四结局全部可达、零崩溃、零场景重播。</p>
+          <div class="ph-tags"><span>TypeScript</span><span>Vite</span><span>Canvas</span><span>WebAudio</span><span>状态机引擎</span><span>无头模拟测试</span></div>
+          <div class="ph-actions">
+            <a class="btn gold" href="https://github.com/tlreal/dice-maze" target="_blank" rel="noopener">GitHub 仓库</a>
+            <a class="btn outline-gold" href="#contact">聊聊这个项目</a>
+          </div>
+          <div class="ph-meta"><span>▸ 800 局稳定性模拟：bot 总胜率 ~11%，牧师 26% / 法师 ~1%，难度曲线分层清晰</span><span>▸ 三暗线 × 四结局（斩王 / 归还·真结局 / 堕落 / 殒命墓志铭），全原创文本</span></div>
+        </div>
+        <div class="dice-visual"><div class="d20-wrap"><div class="d20"><span>20</span></div></div></div>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="proj reveal"><span class="idx">01</span>
+        <h3>智能口罩实时检测系统</h3><div class="en">REAL-TIME MASK DETECTION</div>
+        <p>YOLOv8 + OpenCV + PyQt5 的端到端检测系统：图片上传检测与摄像头实时检测（多设备），戴口罩 / 未戴人数统计与实时 FPS，多线程架构保证界面零卡顿。</p>
+        <div class="metrics"><span class="metric">mAP 92.3%</span><span class="metric g">普通 CPU 25+ FPS</span></div>
+        <div class="stack">Ultralytics · OpenCV · PyQt5 · QThread</div>
+      </div>
+      <div class="proj reveal d1"><span class="idx">02</span>
+        <h3>教育大数据分析平台</h3><div class="en">EDU BIG-DATA PLATFORM</div>
+        <p>Hadoop + Hive 三层数仓（ODS/DWD/DWS）+ DataX 增量同步，千万级教育平台数据处理全流程闭环，为运营决策提供多维分析支撑。</p>
+        <div class="metrics"><span class="metric g">存储 -76.7%（100GB→23.3GB）</span><span class="metric">查询 +33%</span><span class="metric">同步耗时 -75%</span><span class="metric">一致性 99.99%</span></div>
+        <div class="stack">Hadoop · Hive · ORC+Snappy · DataX · MySQL · Shell</div>
+      </div>
+      <div class="proj reveal"><span class="idx">03</span>
+        <h3>音乐推荐系统</h3><div class="en">MUSIC RECOMMENDER</div>
+        <p>独立设计实现的协同过滤推荐系统：网易云音乐数据采集 + Flask API + 响应式 Web UI，实时热门榜单、搜索推荐与系统监控仪表盘。</p>
+        <div class="metrics"><span class="metric">推荐准确率 85%</span><span class="metric g">关键 API &lt;500ms</span><span class="metric">525+ 歌曲数据集</span></div>
+        <div class="stack">Python · 协同过滤 · Flask · SQLite</div>
+      </div>
+      <div class="proj reveal d1"><span class="idx">04</span>
+        <h3>语音技术集成（TTS &amp; ASR）</h3><div class="en">TTS &amp; ASR INTEGRATION</div>
+        <p>基于讯飞开放平台的实时语音合成与识别：WebSocket 双向通信、音频分帧状态机、HMAC-SHA256 动态签名，解决长文本合成中断与识别准确率问题。</p>
+        <div class="metrics"><span class="metric">ASR 准确率 +40%</span><span class="metric g">传输耗时 -25%</span></div>
+        <div class="stack">WebSocket · FFmpeg · pydub · HMAC-SHA256</div>
+      </div>
+      <div class="proj reveal" style="grid-column:1/-1"><span class="idx">05</span>
+        <h3>电影评分大数据分析</h3><div class="en">MOVIE RATINGS WAREHOUSE</div>
+        <p>百万级用户行为数据的 Hive 数据仓库与分析系统：分区 / 分桶优化、窗口函数、UDF 与三表 JOIN，输出 Top 榜单、用户画像与高分电影推荐模型，结果自动化落表。</p>
+        <div class="metrics"><span class="metric g">复杂 JOIN 210s → 45s</span><span class="metric">历史查询效率 +60%</span><span class="metric">推荐模型准确率 92%</span></div>
+        <div class="stack">Hive · HiveQL · UDF · ORC · 分区分桶</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-tag reveal">CONTACT</div>
+    <h2 class="sec-title reveal d1">联系我</h2>
+    <div class="contact-box reveal d1">
+      <h3>有想法？聊聊看。</h3>
+      <p>AI 应用开发 · RAG / Agent 工程化 · 项目合作，欢迎邮件或 GitHub 找我。</p>
+      <div class="contact-actions">
+        <button class="btn primary" id="copyMail">📧 复制邮箱</button>
+        <a class="btn ghost" href="https://github.com/tlreal" target="_blank" rel="noopener">GitHub @tlreal</a>
+      </div>
+      <div class="copy-tip" id="copyTip">已复制到剪贴板 ✓</div>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="wrap">
-    © 2026 谭乐 · 由 <a href="https://github.com/tlreal/tlreal.github.io" target="_blank" rel="noopener">tlreal.github.io</a> 驱动
+    <span>© 2026 谭乐 Tan Le</span>
+    <span><a href="https://github.com/tlreal" target="_blank" rel="noopener">github.com/tlreal</a> · Built with ♥ &amp; AI</span>
   </div>
 </footer>
+
+<script src="app.js"></script>
 </body>
 </html>
