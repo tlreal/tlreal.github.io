@@ -72,6 +72,7 @@ h2.sec-title{font-size:clamp(30px,4.6vw,44px);font-weight:800;letter-spacing:1px
 .stat{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px 22px;position:relative;overflow:hidden}
 .stat::after{content:"";position:absolute;inset:0;background:radial-gradient(420px 120px at 50% -40%,rgba(110,168,255,.14),transparent);pointer-events:none}
 .stat .num{font-size:clamp(30px,4vw,42px);font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-variant-numeric:tabular-nums}
+.stat .num.sm{font-size:clamp(24px,2.8vw,31px);padding:8px 0 3px}
 .stat .lab{color:var(--sub);font-size:13px;margin-top:6px}
 
 /* ---- about ---- */
