@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+<title>骰运迷城 · 在线试玩 — 谭乐</title>
+<meta name="description" content="骰运迷城——一场 15~25 分钟的 DnD 跑团肉鸽文字冒险。完全由代码绘制画面的网页试玩版。">
+<style>
+  html, body { height: 100%; margin: 0; background: #0d0a08; overflow: hidden; }
+  #game { width: 100%; height: 100%; border: none; display: block; }
+  .back {
+    position: fixed; left: 14px; bottom: 14px; z-index: 99;
+    font: 12px/1 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+    color: rgba(232,180,90,.75); text-decoration: none;
+    border: 1px solid rgba(232,180,90,.35); padding: 9px 15px; border-radius: 99px;
+    background: rgba(0,0,0,.55); backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    transition: color .2s, border-color .2s;
+  }
+  .back:hover { color: #f0dfae; border-color: rgba(232,180,90,.7); }
+</style>
+</head>
+<body>
+<iframe id="game" title="骰运迷城" allow="autoplay"></iframe>
+<a class="back" href="/">← 返回主页</a>
+<script>
+  // 网页试玩壳：
+  // 1) 为内嵌游戏生成一次性 nonce 并注入 hb_mini_bridge_nonce 参数
+  // 2) 扮演宿主，应答 hb-sdk 的 runtime gate 探测（同官方 QA 挂具机制）
+  var nonce = (window.crypto && crypto.randomUUID) ? crypto.randomUUID().replace(/-/g, '') : ('web' + Date.now());
+  document.getElementById('game').src = 'app/index.html?hb_mini_bridge_nonce=' + nonce;
+  window.addEventListener('message', function (e) {
+    var d = e.data;
+    if (!d || d.type !== 'request' || !e.source) return;
+    if (d.method === 'runtime.gate.probe') {
+      e.source.postMessage({
+        namespace: d.namespace,
+        version: d.version,
+        nonce: d.nonce,
+        type: 'response',
+        id: d.id,
+        method: d.method,
+        payload: { ready: true }
+      }, '*');
+    }
+  });
+</script>
+</body>
+</html>
